@@ -48,9 +48,9 @@ public class Main extends Application {
 			loader.setLocation(Main.class.getResource("ConnectionScreen.fxml"));
 			AnchorPane GUI = (AnchorPane) loader.load();
 			ConnectScreenController controller = loader.getController();
-			//controller.setMainApp(this);
+			controller.setMainApp(this);
 			root.setCenter(GUI);
-			//controller.initnshit();
+			controller.init();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -60,12 +60,12 @@ public class Main extends Application {
 		try {
 			// Load Loginscreen fxml.
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("ConnectionScreen.fxml"));
+			loader.setLocation(Main.class.getResource("GUI.fxml"));
 			AnchorPane GUI = (AnchorPane) loader.load();
-			ConnectScreenController controller = loader.getController();
-			//controller.setMainApp(this);
+			GuiController controller = loader.getController();
+			controller.setMainApp(this);
 			root.setCenter(GUI);
-			//controller.initnshit();
+			controller.init();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
