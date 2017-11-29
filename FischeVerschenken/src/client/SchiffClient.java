@@ -7,11 +7,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.Scanner;
+
+import gamelogic.SchiffMap;
 
 public class SchiffClient
 {
-private Socket clientSocket;
-	
+	private Socket clientSocket;
+	SchiffMap map = new SchiffMap();
 
 	/*
 	 * verbindet den Clientsocket mit dem host an Port port. Liefert true, wenn die
@@ -54,7 +57,7 @@ private Socket clientSocket;
 
 	/*
 	 * wartet auf Nachrichteneingang (Zeichenkette) vom Server und liefert bei
-	 * Empfang die Nachricht als Zeichenkette zurück.
+	 * Empfang die Nachricht als Zeichenkette zurï¿½ck.
 	 */
 	public String empfangen()
 	{
@@ -70,6 +73,12 @@ private Socket clientSocket;
 		}
 	}
 
+	
+	public void setzeSchiffe() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Setze dein 4er Schiff");
+	}
+	
 	/*
 	 * meldet den Client ab, indem der Clientsocket geschlossen wird.
 	 */

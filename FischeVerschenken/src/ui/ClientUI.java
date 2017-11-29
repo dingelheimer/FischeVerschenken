@@ -15,6 +15,7 @@ public class ClientUI
 		}
 		while(true) {
 			System.out.println(client.empfangen()); 
+			
 		}
 	}
 }
