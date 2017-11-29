@@ -9,72 +9,97 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-public class ServerThread extends Thread {
+public class ServerThread extends Thread
+{
 	private Socket clientSocket;
 	private ClientConnection gameConni;
 	public boolean rdyFlag = false;
 	public boolean playerFlagA;
 
-	public ServerThread(Socket clientSocket) {
+	public ServerThread(Socket clientSocket)
+	{
 		this.clientSocket = clientSocket;
 	}
 
 	@Override
-	public void run() {
-		try {
+	public void run()
+	{
+		try
+		{
 			OutputStream out;
-			if (clientSocket.equals(gameConni.playerA.getClientSocket())) {
+			if (clientSocket.equals(gameConni.playerA.getClientSocket()))
+			{
 
 				out = gameConni.playerB.getClientSocket().getOutputStream();
 				playerFlagA = true;
-			} else {
+			}
+			else
+			{
 				out = gameConni.playerA.getClientSocket().getOutputStream();
 				playerFlagA = false;
 			}
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
 			InputStream in = clientSocket.getInputStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			while (clientSocket.isConnected()) {
+			while (clientSocket.isConnected())
+			{
 				String msg = reader.readLine();
-				if (msg != null) {
-					if (msg.length() == 2) {
-						empfangeKoords(msg);
-					} else if (msg.contains("Schiffe gesetzt")) {
+				if (msg != null)
+				{
+					if (msg.contains("Schuss"))
+					{
+						writer.write(msg);
+						writer.newLine();
+						writer.flush();
+					}
+					else if (msg.contains("Schiffe gesetzt"))
+					{
 						rdyFlag = true;
-						if(playerFlagA) {
+						if (playerFlagA)
+						{
 							writer.write("Warte auf anderen Spieler...");
 							writer.newLine();
 							writer.flush();
-							while(!gameConni.playerB.rdyFlag);
-						}else {
-							writer.write("Warte auf anderen Spieler...");
+							while (!gameConni.playerB.rdyFlag)
+								;
+							writer.write("Lasset die Spiele beginnen! Du kannst anfangen.");
 							writer.newLine();
 							writer.flush();
-							while(!gameConni.playerA.rdyFlag);
 						}
-						
+						else
+						{
+							writer.write("Warte auf anderen Spieler...");
+							writer.newLine();
+							writer.flush();
+							while (!gameConni.playerA.rdyFlag)
+								;
+							writer.write("Lasset die Spiele beginnen! Dein Gegner fängt an.");
+							writer.newLine();
+							writer.flush();
+						}
 					}
 				}
 			}
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
 		}
 	}
 
-	private void empfangeKoords(String koords) {
-		int x = koords.charAt(0) - 97;
-		int y = Integer.parseInt(koords.substring(1, 2)) - 1;
-	}
 
-	public ClientConnection getGameConni() {
+	public ClientConnection getGameConni()
+	{
 		return gameConni;
 	}
 
-	public void setGameConni(ClientConnection gameConni) {
+	public void setGameConni(ClientConnection gameConni)
+	{
 		this.gameConni = gameConni;
 	}
 
-	public Socket getClientSocket() {
+	public Socket getClientSocket()
+	{
 		return clientSocket;
 	}
 }

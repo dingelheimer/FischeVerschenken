@@ -44,6 +44,22 @@ public class SchiffClient {
 			e.printStackTrace();
 		}
 	}
+	
+	public void sendeSchiessen() {
+		try {
+			Scanner sc = new Scanner(System.in);
+
+			System.out.println("Gib die Koordinaten an! z.B.: A4");
+			String koords = sc.nextLine();
+			senden("Schuss "+ koords);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void schuss(String msg) {
+		
+	}
 
 	/*
 	 * wartet auf Nachrichteneingang (Zeichenkette) vom Server und liefert bei
@@ -138,8 +154,14 @@ public class SchiffClient {
 
 	public int[] parseKoords(String koords) {
 		int[] xy = new int[2];
-		xy[0] = koords.charAt(0) - 96;
-		xy[1] = Integer.parseInt(koords.substring(1, 2));
+		xy[0] = koords.charAt(0) - 96;if (koords.length() == 2)
+		{
+			xy[1] = Integer.parseInt(koords.substring(1, 2));
+		}
+		else
+		{
+			xy[1] = Integer.parseInt(koords.substring(1, 3));
+		}
 		System.out.println(xy[0]);
 		System.out.println(xy[1]);
 		return xy;

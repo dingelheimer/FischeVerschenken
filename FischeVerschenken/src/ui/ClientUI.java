@@ -20,6 +20,11 @@ public class ClientUI
 					if(client.stetzeAlleSchiffe()) {
 						client.senden("Schiffe gesetzt");
 					}
+				}else if (message.contains("Lasset die Spiele beginnen! Du kannst")) {
+					client.sendeSchiessen();
+				}
+				else if (message.contains("Schuss")) {
+					client.schuss(message);
 				}
 			}
 		}
