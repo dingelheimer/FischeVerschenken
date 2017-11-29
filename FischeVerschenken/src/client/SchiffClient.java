@@ -9,13 +9,22 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import application.Main;
 import gamelogic.SchiffMap;
+import ui.ClientUI;
 
 public class SchiffClient
 {
 	private Socket clientSocket;
 	SchiffMap map = new SchiffMap();
 
+	private Main main;
+	
+	public SchiffClient(Main main) {
+		this.main = main;
+	}
+	
+	
 	/*
 	 * verbindet den Clientsocket mit dem host an Port port. Liefert true, wenn die
 	 * Verbindung aufgebaut wurde, sonst false.
@@ -85,7 +94,7 @@ public class SchiffClient
 			senden("Daneben du Nub! Kein Treffer.");
 			break;
 		case 1:
-			senden("Treffer! Das hat so richtig BÄM gemacht.");
+			senden("Treffer! Das hat so richtig Bï¿½M gemacht.");
 			break;
 		case 2:
 			senden("Treffer versenkt. Blubb");
@@ -140,7 +149,7 @@ public class SchiffClient
 		if (map.setzeSchiffNeu(xy[0], xy[1], horizontal, groesse))
 		{
 			map.showMap();
-			
+			main.guicontroller.fuelleSpielerMap(map);
 			return true;
 		}
 		else

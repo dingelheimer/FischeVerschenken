@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import ui.ClientUI;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -14,6 +15,7 @@ public class Main extends Application {
 	
 	BorderPane root = new BorderPane();
 	Stage primaryStage = new Stage();
+	public GuiController guicontroller = new GuiController();
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -36,6 +38,9 @@ public class Main extends Application {
 			//primaryStage.setScene(scene);
 			primaryStage.show();
 			showLogin();
+			ClientUI client = new ClientUI();
+			client.start();
+			client.setMain(this);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -62,10 +67,10 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("GUI.fxml"));
 			AnchorPane GUI = (AnchorPane) loader.load();
-			GuiController controller = loader.getController();
-			controller.setMainApp(this);
+			this.guicontroller = loader.getController();
+			this.guicontroller.setMainApp(this);
 			root.setCenter(GUI);
-			controller.init();
+			this.guicontroller.init();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -87,8 +92,8 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		//ui.ClientUI.mainClientUI();
 		launch(args);
-		
 	}
 	
 	public Main getMainApp() {

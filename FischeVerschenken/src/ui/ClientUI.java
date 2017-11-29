@@ -2,15 +2,24 @@ package ui;
 
 import java.util.Scanner;
 
+import application.Main;
 import client.SchiffClient;
 
-public class ClientUI
+public class ClientUI extends Thread
 {
-	public static void main(String[] args)
+	private Main main;
+    
+    public void setMain(Main main) {
+		this.main = main;
+	}
+	
+
+    
+	@Override
+	public void run() 
 	{
-		SchiffClient client = new SchiffClient();
+		SchiffClient client = new SchiffClient(this.main);
 		Scanner sc = new Scanner(System.in);
-		 //application.Main.launch(args);
 		
 		if (client.verbinden("localhost", 5000))
 		{

@@ -86,7 +86,7 @@ public class GuiController {
     	}
     	
     	//this.list.get(3).get(5).setText("  V");
-    	
+    	/*
     	SchiffMap map = new SchiffMap();
     	map.setzeSchiffNeu(2, 6, true, 3);
     	map.setzeSchiffNeu(4, 8, false, 5);
@@ -94,6 +94,7 @@ public class GuiController {
     	int x = map.schuss(3, 6);
     	x = map.schuss(4, 5);
     	fuelleSpielerMap(map);
+    	*/
     }
     
     @FXML
