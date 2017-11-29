@@ -13,9 +13,14 @@ public class ClientUI
 		if (client.verbinden("localhost", 5000))
 		{
 			while(true) {
-				System.out.println(client.empfangen()); 
-				
-				client.stetzeAlleSchiffe();
+				String message = client.empfangen();
+				System.out.println(message); 
+				if(message.contains("OGOGOGOGO")) {
+					System.out.println("Zweiter Spieler gefunden!");
+					if(client.stetzeAlleSchiffe()) {
+						client.senden("Schiffe gesetzt");
+					}
+				}
 			}
 		}
 	}

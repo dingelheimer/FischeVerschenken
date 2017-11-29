@@ -63,7 +63,7 @@ public class SchiffClient {
 		try {
 			Scanner sc = new Scanner(System.in);
 
-			System.out.println("Setze dein "+groesse+"er Schiff");
+			System.out.println("Setze dein " + groesse + "er Schiff");
 			System.out.println("Soll das Schiff horizontal gesetzt werden? y/n");
 			String hori = sc.nextLine();
 			boolean horizontal;
@@ -75,9 +75,9 @@ public class SchiffClient {
 
 			System.out.println("Gib die Koordinaten an! z.B.: A4");
 			String koords = sc.nextLine();
-			parseKoords(koords);
 			int[] xy = new int[2];
-			map.setzeSchiffNeu(xy[0], xy[1], horizontal, 4);
+			xy = parseKoords(koords);
+			map.setzeSchiffNeu(xy[0], xy[1], horizontal, groesse);
 			map.showMap();
 			return true;
 		} catch (Exception e) {
@@ -86,59 +86,62 @@ public class SchiffClient {
 		}
 
 	}
-	
-	public void stetzeAlleSchiffe() {
-		if(setzeSchiffe(4)) {
+
+	public boolean stetzeAlleSchiffe() {
+		if (setzeSchiffe(4)) {
 			System.out.println("Schiff wurde erfolgreich gesetzt!");
 		} else {
 			System.out.println("Schiff konnte nicht gesetzt werden!");
 		}
-		if(setzeSchiffe(3)) {
+		if (setzeSchiffe(3)) {
 			System.out.println("Schiff wurde erfolgreich gesetzt!");
 		} else {
 			System.out.println("Schiff konnte nicht gesetzt werden!");
 		}
-		if(setzeSchiffe(3)) {
+		if (setzeSchiffe(3)) {
 			System.out.println("Schiff wurde erfolgreich gesetzt!");
 		} else {
 			System.out.println("Schiff konnte nicht gesetzt werden!");
 		}
-		if(setzeSchiffe(2)) {
+		if (setzeSchiffe(2)) {
 			System.out.println("Schiff wurde erfolgreich gesetzt!");
 		} else {
 			System.out.println("Schiff konnte nicht gesetzt werden!");
 		}
-		if(setzeSchiffe(2)) {
+		if (setzeSchiffe(2)) {
 			System.out.println("Schiff wurde erfolgreich gesetzt!");
 		} else {
 			System.out.println("Schiff konnte nicht gesetzt werden!");
 		}
-		if(setzeSchiffe(2)) {
+		if (setzeSchiffe(2)) {
 			System.out.println("Schiff wurde erfolgreich gesetzt!");
 		} else {
 			System.out.println("Schiff konnte nicht gesetzt werden!");
 		}
-		if(setzeSchiffe(1)) {
+		if (setzeSchiffe(1)) {
 			System.out.println("Schiff wurde erfolgreich gesetzt!");
 		} else {
 			System.out.println("Schiff konnte nicht gesetzt werden!");
 		}
-		if(setzeSchiffe(1)) {
+		if (setzeSchiffe(1)) {
 			System.out.println("Schiff wurde erfolgreich gesetzt!");
 		} else {
 			System.out.println("Schiff konnte nicht gesetzt werden!");
 		}
-		if(setzeSchiffe(1)) {
+		if (setzeSchiffe(1)) {
 			System.out.println("Schiff wurde erfolgreich gesetzt!");
 		} else {
 			System.out.println("Schiff konnte nicht gesetzt werden!");
 		}
+		return true;
 	}
 
 	public int[] parseKoords(String koords) {
 		int[] xy = new int[2];
-		xy[0] = koords.charAt(0) - 97;
-		xy[0] = Integer.parseInt(koords.substring(1, 2)) - 1;
+		xy[0] = koords.charAt(0) - 96;
+		xy[1] = Integer.parseInt(koords.substring(1, 2));
+		System.out.println(xy[0]);
+		System.out.println(xy[1]);
 		return xy;
 	}
 
