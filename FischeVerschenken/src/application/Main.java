@@ -71,6 +71,21 @@ public class Main extends Application {
 		}
 	}
 	
+	public void showRetard() {
+		try {
+			// Load Loginscreen fxml.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("Retarded.fxml"));
+			AnchorPane GUI = (AnchorPane) loader.load();
+			ConnectScreenController controller = loader.getController();
+			controller.setMainApp(this);
+			root.setCenter(GUI);
+			controller.init();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
