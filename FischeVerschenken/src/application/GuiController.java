@@ -2,12 +2,17 @@ package application;
 
 import java.util.ArrayList;
 
+import javax.swing.text.html.ImageView;
+
 import gamelogic.SchiffMap;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 public class GuiController {
@@ -15,6 +20,15 @@ public class GuiController {
 	public boolean showSchiffeInSpielerMap = true;
 	public boolean showSchiffeInGegnerMap = true;
 	
+	
+	@FXML
+	private AnchorPane ANCH_Hintergrund;
+	
+	@FXML
+	private Button BTN_Fragen;
+	
+	@FXML
+	private ImageView IMG_Hintergrund;
 	
     @FXML
     private GridPane GRD_Spieler;
@@ -75,9 +89,17 @@ public class GuiController {
     	
     	SchiffMap map = new SchiffMap();
     	map.setzeSchiffNeu(2, 6, true, 3);
+    	map.setzeSchiffNeu(4, 8, false, 5);
+    	map.setzeSchiffNeu(10, 3, false, 3);
+    	int x = map.schuss(3, 6);
+    	x = map.schuss(4, 5);
     	fuelleSpielerMap(map);
     }
     
+    @FXML
+  	void buttonFragenPressed(ActionEvent event) {
+    	main.showRetard();
+    }
     
     public void fuelleSpielerMap(SchiffMap map) {
     	String str = "";

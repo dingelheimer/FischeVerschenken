@@ -140,6 +140,7 @@ public class SchiffClient
 		if (map.setzeSchiffNeu(xy[0], xy[1], horizontal, groesse))
 		{
 			map.showMap();
+			
 			return true;
 		}
 		else
