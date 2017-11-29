@@ -16,6 +16,10 @@ public class SchiffMap {
 		}
 	}
 
+	public int[][] getFeld() {
+		return feld;
+	}
+	
 	public boolean setzeSchiffNeu(int x, int y, boolean horizontal, int groesse) {
 		// wenn horizontal true, dann ist schiff horzontal
 
@@ -28,7 +32,8 @@ public class SchiffMap {
 						this.feld[x][y] = 1;
 						System.out.print("1er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 2:
@@ -37,7 +42,8 @@ public class SchiffMap {
 						this.feld[x + 1][y] = 1;
 						System.out.print("2er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 3:
@@ -48,7 +54,8 @@ public class SchiffMap {
 						this.feld[x + 2][y] = 1;
 						System.out.print("3er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 4:
@@ -60,7 +67,8 @@ public class SchiffMap {
 						this.feld[x + 3][y] = 1;
 						System.out.print("4er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 5:
@@ -68,7 +76,8 @@ public class SchiffMap {
 						this.feld[x][y] = 5;
 						System.out.print("Eisberg ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				default:
@@ -86,7 +95,8 @@ public class SchiffMap {
 						this.feld[x][y] = 1;
 						System.out.print("1er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 2:
@@ -95,7 +105,8 @@ public class SchiffMap {
 						this.feld[x][y + 1] = 1;
 						System.out.print("2er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 3:
@@ -106,7 +117,8 @@ public class SchiffMap {
 						this.feld[x][y + 2] = 1;
 						System.out.print("3er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 4:
@@ -118,7 +130,8 @@ public class SchiffMap {
 						this.feld[x][y + 3] = 1;
 						System.out.print("4er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 5:
@@ -126,7 +139,8 @@ public class SchiffMap {
 						this.feld[x][y] = 5;
 						System.out.print("Eisberg ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				default:
@@ -250,7 +264,7 @@ public class SchiffMap {
 	}
 
 	public void showMap() {
-		System.out.println("\t1 2 3 4 5 6 7 8 9 10\n");
+		System.out.println("\tA B C D E F G H I J\n");
 		for (int i = 1; i < 11; i++) {
 			System.out.print(i + "\t");
 			for (int j = 1; j < 11; j++) {
