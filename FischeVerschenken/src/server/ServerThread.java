@@ -52,7 +52,9 @@ public class ServerThread extends Thread {
 							writer.flush();
 							while(!gameConni.playerA.rdyFlag);
 						}
-						
+						writer.write("Alle Spieler bereit");
+						writer.newLine();
+						writer.flush();
 					}
 				}
 			}
