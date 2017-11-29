@@ -11,7 +11,8 @@ import java.util.Scanner;
 
 import gamelogic.SchiffMap;
 
-public class SchiffClient {
+public class SchiffClient
+{
 	private Socket clientSocket;
 	SchiffMap map = new SchiffMap();
 
@@ -19,63 +20,102 @@ public class SchiffClient {
 	 * verbindet den Clientsocket mit dem host an Port port. Liefert true, wenn die
 	 * Verbindung aufgebaut wurde, sonst false.
 	 */
-	public boolean verbinden(String host, int port) {
-		try {
+	public boolean verbinden(String host, int port)
+	{
+		try
+		{
 			clientSocket = new Socket(host, port);
-			if (!clientSocket.isConnected()) {
+			if (!clientSocket.isConnected())
+			{
 				return false;
 			}
 			return true;
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace(); // optional
 			return false;
 		}
 	}
 
 	// sendet text an Server
-	public void senden(String text) {
-		try {
+	public void senden(String text)
+	{
+		try
+		{
 			OutputStream out = clientSocket.getOutputStream();
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
 			writer.write(text);
 			writer.newLine();
 			writer.flush();
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
 		}
 	}
-	
-	public void sendeSchiessen() {
-		try {
+
+	public void sendeSchiessen()
+	{
+		try
+		{
 			Scanner sc = new Scanner(System.in);
 
 			System.out.println("Gib die Koordinaten an! z.B.: A4");
 			String koords = sc.nextLine();
-			senden("Schuss "+ koords);
-		} catch (Exception e) {
+			senden("Schuss " + koords);
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
-	
-	public void schuss(String msg) {
-		
+
+	public void schuss(String msg)
+	{
+		// return 0: nichts getroffen, return 1: treffer, return 2: treffer versenkt,
+		// return 3: alle versenkt
+		String koords = msg.replace("Schuss ", "");
+		int[] xy = new int[2];
+		xy = parseKoords(koords);
+		int treffer = map.schuss(xy[0], xy[1]);
+		switch (treffer)
+		{
+		case 0:
+			senden("Daneben du Nub! Kein Treffer.");
+			break;
+		case 1:
+			senden("Treffer! Das hat so richtig BÄM gemacht.");
+			break;
+		case 2:
+			senden("Treffer versenkt. Blubb");
+			break;
+		case 3:
+			senden("Treffer! Alles versenkt! Gewonnen!");
+			break;
+		}
 	}
 
 	/*
 	 * wartet auf Nachrichteneingang (Zeichenkette) vom Server und liefert bei
 	 * Empfang die Nachricht als Zeichenkette zurï¿½ck.
 	 */
-	public String empfangen() {
-		try {
+	public String empfangen()
+	{
+		try
+		{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			return reader.readLine();
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
 			return "BLYAT!!!";
 		}
 	}
 
-	private boolean setzeSchiffe(int groesse) {
+	private boolean setzeSchiffe(int groesse)
+	{
 
 		Scanner sc = new Scanner(System.in);
 
@@ -83,9 +123,12 @@ public class SchiffClient {
 		System.out.println("Soll das Schiff horizontal gesetzt werden? y/n");
 		String hori = sc.nextLine();
 		boolean horizontal;
-		if (hori.equals("y")) {
+		if (hori.equals("y"))
+		{
 			horizontal = true;
-		} else {
+		}
+		else
+		{
 			horizontal = false;
 		}
 
@@ -94,94 +137,134 @@ public class SchiffClient {
 		int[] xy = new int[2];
 		xy = parseKoords(koords);
 
-		if (map.setzeSchiffNeu(xy[0], xy[1], horizontal, groesse)) {
+		if (map.setzeSchiffNeu(xy[0], xy[1], horizontal, groesse))
+		{
 			map.showMap();
 			return true;
-		} else {
+		}
+		else
+		{
 			map.showMap();
 			return false;
 		}
 	}
 
-	public boolean stetzeAlleSchiffe() {
+	public boolean stetzeAlleSchiffe()
+	{
 		boolean schiffGesetzt = false;
-		while (!schiffGesetzt) {
-			if (setzeSchiffe(4)) {
+		while (!schiffGesetzt)
+		{
+			if (setzeSchiffe(4))
+			{
 				System.out.println("Schiff wurde erfolgreich gesetzt!");
 				schiffGesetzt = true;
-			} else {
+			}
+			else
+			{
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
 		}
 		schiffGesetzt = false;
-		while (!schiffGesetzt) {
-			if (setzeSchiffe(3)) {
+		while (!schiffGesetzt)
+		{
+			if (setzeSchiffe(3))
+			{
 				System.out.println("Schiff wurde erfolgreich gesetzt!");
 				schiffGesetzt = true;
-			} else {
+			}
+			else
+			{
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
 		}
 		schiffGesetzt = false;
-		while (!schiffGesetzt) {
-			if (setzeSchiffe(3)) {
+		while (!schiffGesetzt)
+		{
+			if (setzeSchiffe(3))
+			{
 				System.out.println("Schiff wurde erfolgreich gesetzt!");
 				schiffGesetzt = true;
-			} else {
+			}
+			else
+			{
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
 		}
 		schiffGesetzt = false;
-		while (!schiffGesetzt) {
-			if (setzeSchiffe(2)) {
+		while (!schiffGesetzt)
+		{
+			if (setzeSchiffe(2))
+			{
 				System.out.println("Schiff wurde erfolgreich gesetzt!");
 				schiffGesetzt = true;
-			} else {
+			}
+			else
+			{
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
 		}
 		schiffGesetzt = false;
-		while (!schiffGesetzt) {
-			if (setzeSchiffe(2)) {
+		while (!schiffGesetzt)
+		{
+			if (setzeSchiffe(2))
+			{
 				System.out.println("Schiff wurde erfolgreich gesetzt!");
 				schiffGesetzt = true;
-			} else {
+			}
+			else
+			{
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
 		}
 		schiffGesetzt = false;
-		while (!schiffGesetzt) {
-			if (setzeSchiffe(2)) {
+		while (!schiffGesetzt)
+		{
+			if (setzeSchiffe(2))
+			{
 				System.out.println("Schiff wurde erfolgreich gesetzt!");
 				schiffGesetzt = true;
-			} else {
+			}
+			else
+			{
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
 		}
 		schiffGesetzt = false;
-		while (!schiffGesetzt) {
-			if (setzeSchiffe(1)) {
+		while (!schiffGesetzt)
+		{
+			if (setzeSchiffe(1))
+			{
 				System.out.println("Schiff wurde erfolgreich gesetzt!");
 				schiffGesetzt = true;
-			} else {
+			}
+			else
+			{
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
 		}
 		schiffGesetzt = false;
-		while (!schiffGesetzt) {
-			if (setzeSchiffe(1)) {
+		while (!schiffGesetzt)
+		{
+			if (setzeSchiffe(1))
+			{
 				System.out.println("Schiff wurde erfolgreich gesetzt!");
 				schiffGesetzt = true;
-			} else {
+			}
+			else
+			{
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
 		}
 		schiffGesetzt = false;
-		while (!schiffGesetzt) {
-			if (setzeSchiffe(1)) {
+		while (!schiffGesetzt)
+		{
+			if (setzeSchiffe(1))
+			{
 				System.out.println("Schiff wurde erfolgreich gesetzt!");
 				schiffGesetzt = true;
-			} else {
+			}
+			else
+			{
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
 		}
@@ -190,9 +273,11 @@ public class SchiffClient {
 		return true;
 	}
 
-	public int[] parseKoords(String koords) {
+	public int[] parseKoords(String koords)
+	{
 		int[] xy = new int[2];
-		xy[0] = koords.charAt(0) - 96;if (koords.length() == 2)
+		xy[0] = koords.charAt(0) - 96;
+		if (koords.length() == 2)
 		{
 			xy[1] = Integer.parseInt(koords.substring(1, 2));
 		}
@@ -208,10 +293,14 @@ public class SchiffClient {
 	/*
 	 * meldet den Client ab, indem der Clientsocket geschlossen wird.
 	 */
-	public void abmelden() {
-		try {
+	public void abmelden()
+	{
+		try
+		{
 			clientSocket.close();
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
 		}
 	}

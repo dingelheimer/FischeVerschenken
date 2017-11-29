@@ -37,8 +37,10 @@ public class ServerThread extends Thread {
 			while (clientSocket.isConnected()) {
 				String msg = reader.readLine();
 				if (msg != null) {
-					if (msg.length() == 2) {
-						empfangeKoords(msg);
+					if (msg.contains("Schuss")) {
+						writer.write(msg);
+						writer.newLine();
+						writer.flush();
 					} else if (msg.contains("Schiffe gesetzt")) {
 						rdyFlag = true;
 						if(playerFlagA) {
@@ -55,6 +57,12 @@ public class ServerThread extends Thread {
 						writer.write("Alle Spieler bereit");
 						writer.newLine();
 						writer.flush();
+					}
+					else if (msg.contains("Treffer")) {
+						writer.write(msg);
+						writer.newLine();
+						writer.flush();
+						
 					}
 				}
 			}
