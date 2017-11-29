@@ -32,7 +32,8 @@ public class SchiffMap {
 						this.feld[x][y] = 1;
 						System.out.print("1er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 2:
@@ -41,7 +42,8 @@ public class SchiffMap {
 						this.feld[x + 1][y] = 1;
 						System.out.print("2er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 3:
@@ -52,7 +54,8 @@ public class SchiffMap {
 						this.feld[x + 2][y] = 1;
 						System.out.print("3er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 4:
@@ -64,7 +67,8 @@ public class SchiffMap {
 						this.feld[x + 3][y] = 1;
 						System.out.print("4er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 5:
@@ -72,7 +76,8 @@ public class SchiffMap {
 						this.feld[x][y] = 5;
 						System.out.print("Eisberg ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				default:
@@ -90,7 +95,8 @@ public class SchiffMap {
 						this.feld[x][y] = 1;
 						System.out.print("1er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 2:
@@ -99,7 +105,8 @@ public class SchiffMap {
 						this.feld[x][y + 1] = 1;
 						System.out.print("2er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 3:
@@ -110,7 +117,8 @@ public class SchiffMap {
 						this.feld[x][y + 2] = 1;
 						System.out.print("3er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 4:
@@ -122,7 +130,8 @@ public class SchiffMap {
 						this.feld[x][y + 3] = 1;
 						System.out.print("4er ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				case 5:
@@ -130,7 +139,8 @@ public class SchiffMap {
 						this.feld[x][y] = 5;
 						System.out.print("Eisberg ");
 					} else {
-						System.out.print("Kein ");
+						System.out.println("Kein Schiff erstellt");
+						return false;
 					}
 					break;
 				default:

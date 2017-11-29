@@ -60,79 +60,117 @@ public class SchiffClient {
 	}
 
 	private boolean setzeSchiffe(int groesse) {
-		try {
-			Scanner sc = new Scanner(System.in);
 
-			System.out.println("Setze dein " + groesse + "er Schiff");
-			System.out.println("Soll das Schiff horizontal gesetzt werden? y/n");
-			String hori = sc.nextLine();
-			boolean horizontal;
-			if (hori.equals("y")) {
-				horizontal = true;
-			} else {
-				horizontal = false;
-			}
+		Scanner sc = new Scanner(System.in);
 
-			System.out.println("Gib die Koordinaten an! z.B.: A4");
-			String koords = sc.nextLine();
-			int[] xy = new int[2];
-			xy = parseKoords(koords);
-			map.setzeSchiffNeu(xy[0], xy[1], horizontal, groesse);
-			map.showMap();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
+		System.out.println("Setze dein " + groesse + "er Schiff");
+		System.out.println("Soll das Schiff horizontal gesetzt werden? y/n");
+		String hori = sc.nextLine();
+		boolean horizontal;
+		if (hori.equals("y")) {
+			horizontal = true;
+		} else {
+			horizontal = false;
 		}
 
+		System.out.println("Gib die Koordinaten an! z.B.: A4");
+		String koords = sc.nextLine();
+		int[] xy = new int[2];
+		xy = parseKoords(koords);
+
+		if (map.setzeSchiffNeu(xy[0], xy[1], horizontal, groesse)) {
+			map.showMap();
+			return true;
+		} else {
+			map.showMap();
+			return false;
+		}
 	}
 
 	public boolean stetzeAlleSchiffe() {
-		if (setzeSchiffe(4)) {
-			System.out.println("Schiff wurde erfolgreich gesetzt!");
-		} else {
-			System.out.println("Schiff konnte nicht gesetzt werden!");
+		boolean schiffGesetzt = false;
+		while (!schiffGesetzt) {
+			if (setzeSchiffe(4)) {
+				System.out.println("Schiff wurde erfolgreich gesetzt!");
+				schiffGesetzt = true;
+			} else {
+				System.out.println("Schiff konnte nicht gesetzt werden!");
+			}
 		}
-		if (setzeSchiffe(3)) {
-			System.out.println("Schiff wurde erfolgreich gesetzt!");
-		} else {
-			System.out.println("Schiff konnte nicht gesetzt werden!");
+		schiffGesetzt = false;
+		while (!schiffGesetzt) {
+			if (setzeSchiffe(3)) {
+				System.out.println("Schiff wurde erfolgreich gesetzt!");
+				schiffGesetzt = true;
+			} else {
+				System.out.println("Schiff konnte nicht gesetzt werden!");
+			}
 		}
-		if (setzeSchiffe(3)) {
-			System.out.println("Schiff wurde erfolgreich gesetzt!");
-		} else {
-			System.out.println("Schiff konnte nicht gesetzt werden!");
+		schiffGesetzt = false;
+		while (!schiffGesetzt) {
+			if (setzeSchiffe(3)) {
+				System.out.println("Schiff wurde erfolgreich gesetzt!");
+				schiffGesetzt = true;
+			} else {
+				System.out.println("Schiff konnte nicht gesetzt werden!");
+			}
 		}
-		if (setzeSchiffe(2)) {
-			System.out.println("Schiff wurde erfolgreich gesetzt!");
-		} else {
-			System.out.println("Schiff konnte nicht gesetzt werden!");
+		schiffGesetzt = false;
+		while (!schiffGesetzt) {
+			if (setzeSchiffe(2)) {
+				System.out.println("Schiff wurde erfolgreich gesetzt!");
+				schiffGesetzt = true;
+			} else {
+				System.out.println("Schiff konnte nicht gesetzt werden!");
+			}
 		}
-		if (setzeSchiffe(2)) {
-			System.out.println("Schiff wurde erfolgreich gesetzt!");
-		} else {
-			System.out.println("Schiff konnte nicht gesetzt werden!");
+		schiffGesetzt = false;
+		while (!schiffGesetzt) {
+			if (setzeSchiffe(2)) {
+				System.out.println("Schiff wurde erfolgreich gesetzt!");
+				schiffGesetzt = true;
+			} else {
+				System.out.println("Schiff konnte nicht gesetzt werden!");
+			}
 		}
-		if (setzeSchiffe(2)) {
-			System.out.println("Schiff wurde erfolgreich gesetzt!");
-		} else {
-			System.out.println("Schiff konnte nicht gesetzt werden!");
+		schiffGesetzt = false;
+		while (!schiffGesetzt) {
+			if (setzeSchiffe(2)) {
+				System.out.println("Schiff wurde erfolgreich gesetzt!");
+				schiffGesetzt = true;
+			} else {
+				System.out.println("Schiff konnte nicht gesetzt werden!");
+			}
 		}
-		if (setzeSchiffe(1)) {
-			System.out.println("Schiff wurde erfolgreich gesetzt!");
-		} else {
-			System.out.println("Schiff konnte nicht gesetzt werden!");
+		schiffGesetzt = false;
+		while (!schiffGesetzt) {
+			if (setzeSchiffe(1)) {
+				System.out.println("Schiff wurde erfolgreich gesetzt!");
+				schiffGesetzt = true;
+			} else {
+				System.out.println("Schiff konnte nicht gesetzt werden!");
+			}
 		}
-		if (setzeSchiffe(1)) {
-			System.out.println("Schiff wurde erfolgreich gesetzt!");
-		} else {
-			System.out.println("Schiff konnte nicht gesetzt werden!");
+		schiffGesetzt = false;
+		while (!schiffGesetzt) {
+			if (setzeSchiffe(1)) {
+				System.out.println("Schiff wurde erfolgreich gesetzt!");
+				schiffGesetzt = true;
+			} else {
+				System.out.println("Schiff konnte nicht gesetzt werden!");
+			}
 		}
-		if (setzeSchiffe(1)) {
-			System.out.println("Schiff wurde erfolgreich gesetzt!");
-		} else {
-			System.out.println("Schiff konnte nicht gesetzt werden!");
+		schiffGesetzt = false;
+		while (!schiffGesetzt) {
+			if (setzeSchiffe(1)) {
+				System.out.println("Schiff wurde erfolgreich gesetzt!");
+				schiffGesetzt = true;
+			} else {
+				System.out.println("Schiff konnte nicht gesetzt werden!");
+			}
 		}
+		System.out.println("_______________________");
+		schiffGesetzt = false;
 		return true;
 	}
 
