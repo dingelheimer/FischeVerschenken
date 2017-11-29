@@ -11,8 +11,7 @@ import java.util.Scanner;
 
 import gamelogic.SchiffMap;
 
-public class SchiffClient
-{
+public class SchiffClient {
 	private Socket clientSocket;
 	SchiffMap map = new SchiffMap();
 
@@ -20,37 +19,28 @@ public class SchiffClient
 	 * verbindet den Clientsocket mit dem host an Port port. Liefert true, wenn die
 	 * Verbindung aufgebaut wurde, sonst false.
 	 */
-	public boolean verbinden(String host, int port)
-	{
-		try
-		{
+	public boolean verbinden(String host, int port) {
+		try {
 			clientSocket = new Socket(host, port);
-			if (!clientSocket.isConnected())
-			{
+			if (!clientSocket.isConnected()) {
 				return false;
 			}
 			return true;
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace(); // optional
 			return false;
 		}
 	}
 
 	// sendet text an Server
-	public void senden(String text)
-	{
-		try
-		{
+	public void senden(String text) {
+		try {
 			OutputStream out = clientSocket.getOutputStream();
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
 			writer.write(text);
 			writer.newLine();
 			writer.flush();
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -59,37 +49,106 @@ public class SchiffClient
 	 * wartet auf Nachrichteneingang (Zeichenkette) vom Server und liefert bei
 	 * Empfang die Nachricht als Zeichenkette zur�ck.
 	 */
-	public String empfangen()
-	{
-		try
-		{
+	public String empfangen() {
+		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			return reader.readLine();
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 			return "BLYAT!!!";
 		}
 	}
 
-	
-	public void setzeSchiffe() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Setze dein 4er Schiff");
+	private boolean setzeSchiffe(int groesse) {
+		try {
+			Scanner sc = new Scanner(System.in);
+
+			System.out.println("Setze dein "+groesse+"er Schiff");
+			System.out.println("Soll das Schiff horizontal gesetzt werden? y/n");
+			String hori = sc.nextLine();
+			boolean horizontal;
+			if (hori.equals("y")) {
+				horizontal = true;
+			} else {
+				horizontal = false;
+			}
+
+			System.out.println("Gib die Koordinaten an! z.B.: A4");
+			String koords = sc.nextLine();
+			parseKoords(koords);
+			int[] xy = new int[2];
+			map.setzeSchiffNeu(xy[0], xy[1], horizontal, 4);
+			map.showMap();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 	
+	public void stetzeAlleSchiffe() {
+		if(setzeSchiffe(4)) {
+			System.out.println("Schiff wurde erfolgreich gesetzt!");
+		} else {
+			System.out.println("Schiff konnte nicht gesetzt werden!");
+		}
+		if(setzeSchiffe(3)) {
+			System.out.println("Schiff wurde erfolgreich gesetzt!");
+		} else {
+			System.out.println("Schiff konnte nicht gesetzt werden!");
+		}
+		if(setzeSchiffe(3)) {
+			System.out.println("Schiff wurde erfolgreich gesetzt!");
+		} else {
+			System.out.println("Schiff konnte nicht gesetzt werden!");
+		}
+		if(setzeSchiffe(2)) {
+			System.out.println("Schiff wurde erfolgreich gesetzt!");
+		} else {
+			System.out.println("Schiff konnte nicht gesetzt werden!");
+		}
+		if(setzeSchiffe(2)) {
+			System.out.println("Schiff wurde erfolgreich gesetzt!");
+		} else {
+			System.out.println("Schiff konnte nicht gesetzt werden!");
+		}
+		if(setzeSchiffe(2)) {
+			System.out.println("Schiff wurde erfolgreich gesetzt!");
+		} else {
+			System.out.println("Schiff konnte nicht gesetzt werden!");
+		}
+		if(setzeSchiffe(1)) {
+			System.out.println("Schiff wurde erfolgreich gesetzt!");
+		} else {
+			System.out.println("Schiff konnte nicht gesetzt werden!");
+		}
+		if(setzeSchiffe(1)) {
+			System.out.println("Schiff wurde erfolgreich gesetzt!");
+		} else {
+			System.out.println("Schiff konnte nicht gesetzt werden!");
+		}
+		if(setzeSchiffe(1)) {
+			System.out.println("Schiff wurde erfolgreich gesetzt!");
+		} else {
+			System.out.println("Schiff konnte nicht gesetzt werden!");
+		}
+	}
+
+	public int[] parseKoords(String koords) {
+		int[] xy = new int[2];
+		xy[0] = koords.charAt(0) - 97;
+		xy[0] = Integer.parseInt(koords.substring(1, 2)) - 1;
+		return xy;
+	}
+
 	/*
 	 * meldet den Client ab, indem der Clientsocket geschlossen wird.
 	 */
-	public void abmelden()
-	{
-		try
-		{
+	public void abmelden() {
+		try {
 			clientSocket.close();
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

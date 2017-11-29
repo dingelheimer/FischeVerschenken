@@ -12,10 +12,11 @@ public class ClientUI
 		Scanner sc = new Scanner(System.in);
 		if (client.verbinden("localhost", 5000))
 		{
-		}
-		while(true) {
-			System.out.println(client.empfangen()); 
-			
+			while(true) {
+				System.out.println(client.empfangen()); 
+				
+				client.stetzeAlleSchiffe();
+			}
 		}
 	}
 }
