@@ -16,6 +16,10 @@ public class SchiffMap {
 		}
 	}
 
+	public int[][] getFeld() {
+		return feld;
+	}
+	
 	public boolean setzeSchiffNeu(int x, int y, boolean horizontal, int groesse) {
 		// wenn horizontal true, dann ist schiff horzontal
 
@@ -250,7 +254,7 @@ public class SchiffMap {
 	}
 
 	public void showMap() {
-		System.out.println("\t1 2 3 4 5 6 7 8 9 10\n");
+		System.out.println("\tA B C D E F G H I J\n");
 		for (int i = 1; i < 11; i++) {
 			System.out.print(i + "\t");
 			for (int j = 1; j < 11; j++) {
