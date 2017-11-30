@@ -20,7 +20,7 @@ public class ClientUI extends Thread
 		
 		Scanner sc = new Scanner(System.in);
 		
-		if (client.verbinden("localhost", 5000))
+		if (client.verbinden("172.16.224.151", 5000))
 		{
 			while(true) {
 				String message = client.empfangen();
@@ -51,14 +51,14 @@ public class ClientUI extends Thread
 						break;
 					case "Treffer! Alles versenkt! Gewonnen!":
 						client.senden("Du hast verloren!");
-						client.abmelden();
 						this.interrupt();
+						client.abmelden();
 						break;
 					}
 				}
 				else if (message.contains("Du hast verloren!")) {
-					client.abmelden();
 					this.interrupt();
+					client.abmelden();
 				}
 				else if (message.contains("Du bist dran!")) {
 					client.sendeSchiessen();
