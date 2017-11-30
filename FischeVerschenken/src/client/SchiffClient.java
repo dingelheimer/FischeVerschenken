@@ -283,7 +283,7 @@ public class SchiffClient
 	public int[] parseKoords(String koords)
 	{
 		int[] xy = new int[2];
-		xy[0] = koords.charAt(0) - 96;
+		xy[0] = koords.toLowerCase().charAt(0) - 96;
 		if (koords.length() == 2)
 		{
 			xy[1] = Integer.parseInt(koords.substring(1, 2));
