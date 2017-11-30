@@ -96,15 +96,19 @@ public class SchiffClient
 		{
 		case 0:
 			senden("Daneben du Nub! Kein Treffer.");
+			this.mapGegner.setFeld(xy[0], xy[1], -2);
 			break;
 		case 1:
 			senden("Treffer! Das hat so richtig BAM gemacht.");
+			this.mapGegner.setFeld(xy[0], xy[1], -1);
 			break;
 		case 2:
 			senden("Treffer versenkt. Blubb");
+			this.mapGegner.setFeld(xy[0], xy[1], -1);
 			break;
 		case 3:
 			senden("Treffer! Alles versenkt! Gewonnen!");
+			this.mapGegner.setFeld(xy[0], xy[1], -1);
 			break;
 		}
 	}
