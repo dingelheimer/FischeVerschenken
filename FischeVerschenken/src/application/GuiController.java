@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import javax.swing.text.html.ImageView;
 
 import gamelogic.SchiffMap;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -95,13 +97,34 @@ public class GuiController {
     	x = map.schuss(4, 5);
     	fuelleSpielerMap(map);
     	*/
+    	
+    	
+    	Task task = new Task<Void>() {
+    		  @Override
+    		  public Void call() throws Exception {
+    		    while (true) {
+    		      Platform.runLater(new Runnable() {
+    		        @Override
+    		        public void run() {
+    		        	fuelleSpielerMap(main.getClient().getClient().getMap());
+    		        	fuelleGegnerMap(main.getClient().getClient().getMap());
+    		        }
+    		      });
+    		      Thread.sleep(250);
+    		    }
+    		  }
+    		};
+    		Thread th = new Thread(task);
+    		th.setDaemon(true);
+    		th.start();
+    	
     }
     
     @FXML
   	void buttonFragenPressed(ActionEvent event) {
-    	fuelleSpielerMap(main.getClient().getClient().getMap());
+    	//fuelleSpielerMap(main.getClient().getClient().getMap());
     	
-    	//main.showRetard();
+    	main.showRetard();
     }
     
     public void fuelleSpielerMap(SchiffMap map) {
