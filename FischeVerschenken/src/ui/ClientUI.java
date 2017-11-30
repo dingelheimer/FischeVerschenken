@@ -34,6 +34,29 @@ public class ClientUI extends Thread
 				else if (message.contains("Schuss")) {
 					client.schuss(message);
 				}
+				else if(message.contains("Treffer")) {
+					switch (message) {
+					case "Daneben du Nub! Kein Treffer." : 
+						client.senden("Du bist dran!");
+						break;
+					case "Treffer! Das hat so richtig BAM gemacht.":
+						client.sendeSchiessen();
+						break;
+					case "Treffer versenkt. Blubb":
+						client.sendeSchiessen();
+						break;
+					case "Treffer! Alles versenkt! Gewonnen!":
+						client.senden("Du hast verloren!");
+						this.interrupt();
+						break;
+					}
+				}
+				else if (message.contains("Du hast verloren!")) {
+					this.interrupt();
+				}
+				else if (message.contains("Du bist dran!")) {
+					client.sendeSchiessen();
+				}
 			}
 		}
 	}

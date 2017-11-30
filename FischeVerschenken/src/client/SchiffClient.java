@@ -91,7 +91,7 @@ public class SchiffClient
 			senden("Daneben du Nub! Kein Treffer.");
 			break;
 		case 1:
-			senden("Treffer! Das hat so richtig B�M gemacht.");
+			senden("Treffer! Das hat so richtig BAM gemacht.");
 			break;
 		case 2:
 			senden("Treffer versenkt. Blubb");

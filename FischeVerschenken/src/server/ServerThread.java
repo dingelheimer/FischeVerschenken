@@ -62,7 +62,16 @@ public class ServerThread extends Thread {
 						writer.write(msg);
 						writer.newLine();
 						writer.flush();
-						
+					}
+					else if (msg.contains("Du hast verloren!")) {
+						writer.write(msg);
+						writer.newLine();
+						writer.flush();
+					}
+					else if (msg.contains("Du bist dran")) {
+						writer.write(msg);
+						writer.newLine();
+						writer.flush();
 					}
 				}
 			}
