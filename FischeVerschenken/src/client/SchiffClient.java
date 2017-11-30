@@ -18,9 +18,10 @@ public class SchiffClient
 	private Socket clientSocket;
 	SchiffMap map = new SchiffMap();
 
-	private Main main;
-	
-	
+	public SchiffMap getMap()
+	{
+		return map;
+	}
 	
 	/*
 	 * verbindet den Clientsocket mit dem host an Port port. Liefert true, wenn die

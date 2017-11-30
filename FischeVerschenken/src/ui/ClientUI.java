@@ -7,10 +7,13 @@ import client.SchiffClient;
 
 public class ClientUI extends Thread
 {
-	public SchiffClient client = new SchiffClient();
+	SchiffClient client = new SchiffClient();
 	
+	public SchiffClient getClient()
+	{
+		return client;
+	}
 
-    
 	@Override
 	public void run() 
 	{
