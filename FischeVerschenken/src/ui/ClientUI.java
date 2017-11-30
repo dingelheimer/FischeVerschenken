@@ -11,6 +11,13 @@ public class ClientUI extends Thread
 	
 
     
+	public SchiffClient getClient()
+	{
+		return client;
+	}
+
+
+
 	@Override
 	public void run() 
 	{

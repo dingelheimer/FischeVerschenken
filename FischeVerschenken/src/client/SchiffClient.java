@@ -18,6 +18,11 @@ public class SchiffClient
 	private Socket clientSocket;
 	SchiffMap map = new SchiffMap();
 
+	public SchiffMap getMap()
+	{
+		return map;
+	}
+
 	private Main main;
 	
 	
