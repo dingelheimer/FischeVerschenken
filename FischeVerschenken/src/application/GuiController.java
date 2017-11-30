@@ -99,7 +99,9 @@ public class GuiController {
     
     @FXML
   	void buttonFragenPressed(ActionEvent event) {
-    	main.showRetard();
+    	fuelleSpielerMap(main.getClient().getClient().getMap());
+    	
+    	//main.showRetard();
     }
     
     public void fuelleSpielerMap(SchiffMap map) {

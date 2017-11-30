@@ -16,6 +16,7 @@ public class Main extends Application {
 	BorderPane root = new BorderPane();
 	Stage primaryStage = new Stage();
 	public GuiController guicontroller = new GuiController();
+	private ClientUI client = new ClientUI();
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -39,14 +40,18 @@ public class Main extends Application {
 			primaryStage.show();
 			
 			showLogin();
-			ClientUI client = new ClientUI();
-			//client.getClient().getMap();
+			
+			
 			client.start();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	public ClientUI getClient() {
+		return client;
+	}
+
 	public void showLogin() {
 		try {
 			// Load Loginscreen fxml.
