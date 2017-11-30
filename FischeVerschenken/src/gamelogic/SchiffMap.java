@@ -15,6 +15,10 @@ public class SchiffMap {
 			}
 		}
 	}
+	
+	public void setFeld(int x, int y, int wert) {
+		this.feld[x][y] = wert;
+	}
 
 	public int[][] getFeld() {
 		return feld;
