@@ -43,16 +43,21 @@ public class ServerThread extends Thread {
 						writer.flush();
 					} else if (msg.contains("Schiffe gesetzt")) {
 						rdyFlag = true;
+						boolean notStart = true;
 						if(playerFlagA) {
 							writer.write("Warte auf anderen Spieler...");
 							writer.newLine();
 							writer.flush();
-							while(!gameConni.playerB.rdyFlag);
+							while(notStart) {
+								notStart = gameConni.playerA.rdyFlag;
+							};
 						}else {
 							writer.write("Warte auf anderen Spieler...");
 							writer.newLine();
 							writer.flush();
-							while(!gameConni.playerA.rdyFlag);
+							while(notStart) {
+								notStart = gameConni.playerB.rdyFlag;
+							};
 						}
 						writer.write("Alle Spieler bereit");
 						writer.newLine();

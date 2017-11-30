@@ -146,7 +146,6 @@ public class SchiffClient
 		if (map.setzeSchiffNeu(xy[0], xy[1], horizontal, groesse))
 		{
 			map.showMap();
-			main.guicontroller.fuelleSpielerMap(map);
 			return true;
 		}
 		else
