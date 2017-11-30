@@ -87,17 +87,6 @@ public class GuiController {
     		}
     	}
     	
-    	//this.list.get(3).get(5).setText("  V");
-    	/*
-    	SchiffMap map = new SchiffMap();
-    	map.setzeSchiffNeu(2, 6, true, 3);
-    	map.setzeSchiffNeu(4, 8, false, 5);
-    	map.setzeSchiffNeu(10, 3, false, 3);
-    	int x = map.schuss(3, 6);
-    	x = map.schuss(4, 5);
-    	fuelleSpielerMap(map);
-    	*/
-    	
     	
     	Task task = new Task<Void>() {
     		  @Override
@@ -121,9 +110,7 @@ public class GuiController {
     }
     
     @FXML
-  	void buttonFragenPressed(ActionEvent event) {
-    	//fuelleSpielerMap(main.getClient().getClient().getMap());
-    	
+  	void buttonFragenPressed(ActionEvent event) {    	
     	main.showRetard();
     }
     
