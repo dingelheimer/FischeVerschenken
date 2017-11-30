@@ -7,18 +7,14 @@ import client.SchiffClient;
 
 public class ClientUI extends Thread
 {
-	private Main main;
-    
-    public void setMain(Main main) {
-		this.main = main;
-	}
+	SchiffClient client = new SchiffClient();
 	
 
     
 	@Override
 	public void run() 
 	{
-		SchiffClient client = new SchiffClient(this.main);
+		
 		Scanner sc = new Scanner(System.in);
 		
 		if (client.verbinden("localhost", 5000))

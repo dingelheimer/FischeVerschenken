@@ -20,9 +20,6 @@ public class SchiffClient
 
 	private Main main;
 	
-	public SchiffClient(Main main) {
-		this.main = main;
-	}
 	
 	
 	/*

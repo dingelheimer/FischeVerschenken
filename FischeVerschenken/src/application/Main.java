@@ -40,7 +40,6 @@ public class Main extends Application {
 			showLogin();
 			ClientUI client = new ClientUI();
 			client.start();
-			client.setMain(this);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
