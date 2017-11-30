@@ -83,7 +83,7 @@ public class GuiController {
     	
     	for(int i = 1; i < 12; i++) {
     		for(int j = 1; j < 12; j++) {
-    			this.GRD_Spieler.add(this.listGegner.get(i).get(j), i, j, 1, 1);
+    			this.GRD_Gegner.add(this.listGegner.get(i).get(j), i, j, 1, 1);
     		}
     	}
     	
@@ -144,12 +144,12 @@ public class GuiController {
     	for(int i = 1; i < 11; i++) {
     		for(int j = 1; j < 11; j++) {
     			str = "";
-    			if(feld[j][i] == 1 && showSchiffeInSpielerMap) {
-    				str = "  S";
-    			}
-				if(feld[j][i] == 5 && showSchiffeInSpielerMap) {
-					str = "  E";
-				}
+    			//if(feld[j][i] == 1 && showSchiffeInSpielerMap) {
+    			//	str = "  S";
+    			//}
+				//if(feld[j][i] == 5 && showSchiffeInSpielerMap) {
+				//	str = "  E";
+				//}
     			if(feld[j][i] == -1) {
     				str = "  X";
     			}
