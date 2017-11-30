@@ -67,7 +67,7 @@ public class SchiffClient
 		try
 		{
 			Scanner sc = new Scanner(System.in);
-
+			System.out.println("Du darfst schiessen.");
 			System.out.println("Gib die Koordinaten an! z.B.: A4");
 			String koords = sc.nextLine();
 			senden("Schuss " + koords);

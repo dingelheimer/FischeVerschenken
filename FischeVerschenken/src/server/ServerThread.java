@@ -74,6 +74,9 @@ public class ServerThread extends Thread
 									// e.printStackTrace();
 								}
 							}
+							writer.write("Lasset die Spiele beginnen! Du kannst anfangen.");
+							writer.newLine();
+							writer.flush();
 						}
 						else
 						{
@@ -92,10 +95,10 @@ public class ServerThread extends Thread
 									// e.printStackTrace();
 								}
 							}
+							writer.write("Lasset die Spiele beginnen! Dein Gegner startet.");
+							writer.newLine();
+							writer.flush();
 						}
-						writer.write("Alle Spieler bereit");
-						writer.newLine();
-						writer.flush();
 					}
 					else if (msg.contains("Treffer"))
 					{

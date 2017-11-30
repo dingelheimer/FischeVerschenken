@@ -40,6 +40,7 @@ public class ClientUI extends Thread
 				else if(message.contains("Treffer")) {
 					switch (message) {
 					case "Daneben du Nub! Kein Treffer." : 
+						System.out.println("Dein Gegner ist dran.");
 						client.senden("Du bist dran!");
 						break;
 					case "Treffer! Das hat so richtig BAM gemacht.":
@@ -50,11 +51,13 @@ public class ClientUI extends Thread
 						break;
 					case "Treffer! Alles versenkt! Gewonnen!":
 						client.senden("Du hast verloren!");
+						client.abmelden();
 						this.interrupt();
 						break;
 					}
 				}
 				else if (message.contains("Du hast verloren!")) {
+					client.abmelden();
 					this.interrupt();
 				}
 				else if (message.contains("Du bist dran!")) {
