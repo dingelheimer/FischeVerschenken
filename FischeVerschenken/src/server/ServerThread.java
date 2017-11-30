@@ -48,16 +48,36 @@ public class ServerThread extends Thread {
 							writer.write("Warte auf anderen Spieler...");
 							writer.newLine();
 							writer.flush();
-							while(notStart) {
-								notStart = gameConni.playerA.rdyFlag;
-							};
+							if (!gameConni.playerB.rdyFlag) {
+								try
+								{
+									this.wait();
+								}
+								catch (InterruptedException e)
+								{
+									//e.printStackTrace();
+								}
+							}
+							else {
+								gameConni.playerB.notify();
+							}
 						}else {
 							writer.write("Warte auf anderen Spieler...");
 							writer.newLine();
 							writer.flush();
-							while(notStart) {
-								notStart = gameConni.playerB.rdyFlag;
-							};
+							if (!gameConni.playerA.rdyFlag) {
+								try
+								{
+									this.wait();
+								}
+								catch (InterruptedException e)
+								{
+									//e.printStackTrace();
+								}
+							}
+							else {
+								gameConni.playerA.notify();
+							}
 						}
 						writer.write("Alle Spieler bereit");
 						writer.newLine();
