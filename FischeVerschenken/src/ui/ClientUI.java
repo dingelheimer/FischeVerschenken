@@ -8,6 +8,8 @@ import client.SchiffClient;
 public class ClientUI extends Thread
 {
 	SchiffClient client = new SchiffClient();
+	int[] letzterSchuss = new int[2];
+	
 	
 	public SchiffClient getClient()
 	{
@@ -32,24 +34,32 @@ public class ClientUI extends Thread
 						client.senden("Schiffe gesetzt");
 					}
 				}else if (message.contains("Lasset die Spiele beginnen! Du kannst")) {
-					client.sendeSchiessen();
+					String koords = client.sendeSchiessen();
+					letzterSchuss = client.parseKoords(koords);
 				}
 				else if (message.contains("Schuss")) {
 					client.schuss(message);
 				}
 				else if(message.contains("Treffer")) {
+					String koords;
 					switch (message) {
 					case "Daneben du Nub! Kein Treffer." : 
+						this.client.getMapGegner().setFeld(letzterSchuss[0], letzterSchuss[1], -2);
 						System.out.println("Dein Gegner ist dran.");
 						client.senden("Du bist dran!");
 						break;
 					case "Treffer! Das hat so richtig BAM gemacht.":
-						client.sendeSchiessen();
+						this.client.getMapGegner().setFeld(letzterSchuss[0], letzterSchuss[1], -1);
+						 koords = client.sendeSchiessen();
+						 letzterSchuss = client.parseKoords(koords);
 						break;
 					case "Treffer versenkt. Blubb":
-						client.sendeSchiessen();
+						this.client.getMapGegner().setFeld(letzterSchuss[0], letzterSchuss[1], -1);
+						 koords = client.sendeSchiessen();
+						 letzterSchuss = client.parseKoords(koords);
 						break;
 					case "Treffer! Alles versenkt! Gewonnen!":
+						this.client.getMapGegner().setFeld(letzterSchuss[0], letzterSchuss[1], -1);
 						client.senden("Du hast verloren!");
 						this.interrupt();
 						client.abmelden();

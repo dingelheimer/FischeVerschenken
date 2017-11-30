@@ -68,7 +68,7 @@ public class SchiffClient
 		}
 	}
 
-	public void sendeSchiessen()
+	public String sendeSchiessen()
 	{
 		try
 		{
@@ -77,10 +77,12 @@ public class SchiffClient
 			System.out.println("Gib die Koordinaten an! z.B.: A4");
 			String koords = sc.nextLine();
 			senden("Schuss " + koords);
+			return koords;
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
+			return "";
 		}
 	}
 
@@ -96,19 +98,15 @@ public class SchiffClient
 		{
 		case 0:
 			senden("Daneben du Nub! Kein Treffer.");
-			this.mapGegner.setFeld(xy[0], xy[1], -2);
 			break;
 		case 1:
 			senden("Treffer! Das hat so richtig BAM gemacht.");
-			this.mapGegner.setFeld(xy[0], xy[1], -1);
 			break;
 		case 2:
 			senden("Treffer versenkt. Blubb");
-			this.mapGegner.setFeld(xy[0], xy[1], -1);
 			break;
 		case 3:
 			senden("Treffer! Alles versenkt! Gewonnen!");
-			this.mapGegner.setFeld(xy[0], xy[1], -1);
 			break;
 		}
 	}
