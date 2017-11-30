@@ -7,7 +7,7 @@ import client.SchiffClient;
 
 public class ClientUI extends Thread
 {
-	SchiffClient client = new SchiffClient();
+	public SchiffClient client = new SchiffClient();
 	
 
     
