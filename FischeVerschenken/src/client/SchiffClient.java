@@ -17,8 +17,14 @@ public class SchiffClient
 {
 	private Socket clientSocket;
 	SchiffMap map = new SchiffMap();
+	SchiffMap mapGegner = new SchiffMap();
 
 	public SchiffMap getMap()
+	{
+		return map;
+	}
+	
+	public SchiffMap getMapGegner()
 	{
 		return map;
 	}
