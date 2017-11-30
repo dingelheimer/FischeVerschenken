@@ -181,7 +181,7 @@ public class SchiffClient
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
 		}
-		schiffGesetzt = false;
+		/*schiffGesetzt = false;
 		while (!schiffGesetzt)
 		{
 			if (setzeSchiffe(3))
@@ -271,7 +271,7 @@ public class SchiffClient
 			{
 				System.out.println("Schiff konnte nicht gesetzt werden!");
 			}
-		}
+		}*/
 		schiffGesetzt = false;
 		while (!schiffGesetzt)
 		{
