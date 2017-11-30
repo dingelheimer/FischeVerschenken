@@ -6,9 +6,9 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ConnectScreenController">
    <children>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0">
+      <AnchorPane prefHeight="300.0" prefWidth="530.0">
          <children>
-            <ImageView fitHeight="600.0" fitWidth="800.0" layoutX="135.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="300.0" fitWidth="530.0" layoutX="135.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@when-you-forget-youre-retarded-marca-how-could-i-forget-14500949.png" />
                </image>
