@@ -96,7 +96,7 @@ public class GuiController {
     		        @Override
     		        public void run() {
     		        	fuelleSpielerMap(main.getClient().getClient().getMap());
-    		        	fuelleGegnerMap(main.getClient().getClient().getMap());
+    		        	fuelleGegnerMap(main.getClient().getClient().getMapGegner());
     		        }
     		      });
     		      Thread.sleep(250);
